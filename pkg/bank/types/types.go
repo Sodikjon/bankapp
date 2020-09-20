@@ -18,18 +18,25 @@ type PAN string
 
 // Card Представляет информаци. о платежной карте
 type Card struct {
-	ID int
-	PAN PAN
-	Balance Money // использовали Money
+	ID         int
+	PAN        PAN
+	Balance    Money // использовали Money
 	MinBalance Money // использовали Money
-	Currency Currency
-	Color string
-	Name string
-	Active bool
+	Currency   Currency
+	Color      string
+	Name       string
+	Active     bool
 }
 
 // Payment предстваляет информацию о платеже
 type Payment struct {
-	ID int
+	ID     int
 	Amount Money
+}
+
+// PaymentSource слайс карт для выбора
+type PaymentSource struct {
+	Type    string //'card'
+	Number  string // номер вида '5058 xxxx xxxx 8888'
+	Balance Money  // баланс
 }

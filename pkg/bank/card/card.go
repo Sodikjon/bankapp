@@ -19,3 +19,20 @@ func Total(cards []types.Card) types.Money {
 	}
 	return sum
 }
+
+// PaymentSources дает выбор карт для оплаты
+func PaymentSources(cards []types.Card) (payment []types.PaymentSource) {
+	payment = []types.PaymentSource{}
+	for _, card := range cards {
+		if !card.Active {
+			continue
+		}
+
+		if card.Balance <= 0 {
+			continue
+		}
+		
+		payment = append(payment, types.PaymentSource{Type: "card", Number: string(card.PAN), Balance: card.Balance})
+	}
+	return payment
+}
